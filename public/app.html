@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tome</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1>Tome</h1>
+    <div class="header-right">
+      <span id="userName"></span>
+      <a href="/auth/logout" class="btn btn-sm">Logout</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Search -->
+    <section class="search-section">
+      <input type="text" id="searchInput" placeholder="Search journals & documents...">
+      <button onclick="search()" class="btn">Search</button>
+    </section>
+    <div id="searchResults" class="results hidden"></div>
+
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="journal">Journal</button>
+      <button class="tab" data-tab="documents">Documents</button>
+    </nav>
+
+    <!-- Journal Tab -->
+    <section id="journal" class="tab-content active">
+      <div class="form-section">
+        <input type="text" id="entryTitle" placeholder="Title (optional)">
+        <textarea id="entryContent" placeholder="Write your journal entry..."></textarea>
+        <button onclick="saveEntry()" class="btn">Save Entry</button>
+      </div>
+      <div id="journalList" class="list"></div>
+    </section>
+
+    <!-- Documents Tab -->
+    <section id="documents" class="tab-content">
+      <div class="form-section">
+        <input type="file" id="fileInput" accept=".txt,.md,.pdf">
+        <button onclick="uploadFile()" class="btn">Upload</button>
+      </div>
+      <div id="documentList" class="list"></div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
