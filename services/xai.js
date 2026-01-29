@@ -14,7 +14,7 @@ async function getEmbedding(text) {
       'Authorization': `Bearer ${process.env.XAI_API_KEY}`,
     },
     body: JSON.stringify({
-      model: process.env.XAI_EMBEDDING_MODEL || 'text-embedding-3-small',
+      model: process.env.XAI_EMBEDDING_MODEL || 'grok-embedding-small',
       input: text,
     }),
   });
@@ -40,7 +40,7 @@ async function getEmbeddings(texts) {
       'Authorization': `Bearer ${process.env.XAI_API_KEY}`,
     },
     body: JSON.stringify({
-      model: process.env.XAI_EMBEDDING_MODEL || 'text-embedding-3-small',
+      model: process.env.XAI_EMBEDDING_MODEL || 'grok-embedding-small',
       input: texts,
     }),
   });

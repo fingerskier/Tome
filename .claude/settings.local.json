@@ -6,7 +6,13 @@
       "mcp__dude__create_issue",
       "mcp__dude__update_issue",
       "mcp__dude__create_specification",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(claude mcp:*)",
+      "WebFetch(domain:docs.x.ai)",
+      "WebFetch(domain:api.x.ai)",
+      "WebFetch(domain:latenode.com)",
+      "WebFetch(domain:www.datastudios.org)",
+      "WebFetch(domain:x.ai)"
     ]
   }
 }
