@@ -13,8 +13,10 @@ const { ensureAuthenticatedRedirect } = require('./middleware/auth');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Ensure uploads directory exists
-const uploadsDir = path.join(__dirname, 'uploads');
+// Ensure uploads directory exists (use /tmp on Vercel due to read-only filesystem)
+const uploadsDir = process.env.VERCEL
+  ? '/tmp/uploads'
+  : path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }

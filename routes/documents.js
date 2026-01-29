@@ -9,10 +9,18 @@ const { ensureAuthenticated } = require('../middleware/auth');
 
 const router = express.Router();
 
-// Configure multer for file uploads
+// Configure multer for file uploads (use /tmp on Vercel due to read-only filesystem)
+const uploadsDir = process.env.VERCEL
+  ? '/tmp/uploads'
+  : path.join(__dirname, '..', 'uploads');
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    const fs = require('fs');
+    if (!fs.existsSync(uploadsDir)) {
+      fs.mkdirSync(uploadsDir, { recursive: true });
+    }
+    cb(null, uploadsDir);
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -155,7 +163,7 @@ router.delete('/:id', ensureAuthenticated, async (req, res) => {
 
     // Delete file
     try {
-      await fs.unlink(path.join('uploads', doc.rows[0].filename));
+      await fs.unlink(path.join(uploadsDir, doc.rows[0].filename));
     } catch (err) {
       console.error('Error deleting file:', err);
     }
