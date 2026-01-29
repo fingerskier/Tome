@@ -5,7 +5,8 @@
       "mcp__dude__create_project",
       "mcp__dude__create_issue",
       "mcp__dude__update_issue",
-      "mcp__dude__create_specification"
+      "mcp__dude__create_specification",
+      "Bash(npm install:*)"
     ]
   }
 }
